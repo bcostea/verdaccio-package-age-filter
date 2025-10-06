@@ -113,7 +113,6 @@ warn --- Downgrading pino from 10.0.0 (3 days old) to 9.12.0 (8 days old)
 
 ## Limitations
 
-- **Scoped packages**: Currently processes non-scoped packages. Scoped packages (e.g., `@org/package`) pass through unchanged.
 - **Package history**: Works best with packages that have clean version histories. Packages with complex or unusual version schemes may behave unexpectedly.
 - **No version found**: If no stable version meeting the age requirement is found, the request is blocked with a 403 error.
 

@@ -66,13 +66,15 @@ class AgeFilterMiddleware {
   register_middlewares(app, auth, storage) {
     const self = this;
 
-    app.get('/:package', async (req, res, next) => {
-      const packageName = req.params.package;
+    // Handle both scoped (@scope/package) and non-scoped packages
+    const packageRoutes = ['/:package', '/@:scope/:package'];
 
-      // Skip scoped packages metadata endpoint
-      if (packageName.startsWith('@')) {
-        return next();
-      }
+    packageRoutes.forEach(route => {
+      app.get(route, async (req, res, next) => {
+        // Construct package name (scoped or non-scoped)
+        const packageName = req.params.scope
+          ? `@${req.params.scope}/${req.params.package}`
+          : req.params.package;
 
       try {
         // Get package metadata
@@ -141,7 +143,8 @@ class AgeFilterMiddleware {
         self.logger.debug({ err, package: packageName }, 'Could not check package age');
       }
 
-      next();
+        next();
+      });
     });
 
     // Tarball downloads will automatically work with the modified metadata
