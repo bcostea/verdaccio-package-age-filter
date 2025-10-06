@@ -146,7 +146,7 @@ npm install ./verdaccio-package-age-filter
 
 ```yaml
 middlewares:
-  age-filter:
+  package-age-filter:
     enabled: true
     maxAgeDays: 7
 ```
