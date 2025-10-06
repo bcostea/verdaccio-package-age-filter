@@ -1,0 +1,7 @@
+{
+  "name": "verdaccio-package-age-filter",
+  "version": "1.0.0",
+  "description": "Verdaccio middleware plugin to block packages newer than a specified age",
+  "main": "index.js",
+  "keywords": ["verdaccio", "plugin", "middleware"]
+}
